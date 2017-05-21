@@ -159,26 +159,17 @@ public class Controlador implements ActionListener {
                     vistaPoli.txtPol2.setVisible(false);
                     vistaPoli.txtPol2.setText("");
                     vistaPoli.btnAccion.setVisible(false);
-                    vistaPoli.PoliUser.setVisible(false);
-                    vistaPoli.PoliUser.setText("");
-                    vistaPoli.PoliUser2.setVisible(false);
                     vistaPoli.Resultado.setVisible(false);
-                    vistaPoli.txtPolAux.setVisible(false);
-                     vistaPoli.txtPolAux.setText("");
-                    vistaPoli.jLabelPoliAux.setVisible(false);
-                    vistaPoli.jLabelPoliAux.setText("");
                     vistaPoli.jLabelPoli2.setVisible(false);
                     vistaPoli.jLabelPoli2.setText("");
                     vistaPoli.ResultadoFin.setVisible(false);
                     vistaPoli.ResultadoFin.setText("");
                     vistaPoli.ResultadoFin.setVisible(false);
-                    vistaPoli.jTextArea.setEnabled(false);
                 //evaluar Polinomio
                 case 1:
                     //Restablecer las variables por si el usuario quiere realizar otra operación
                     //------------------------------
-                    vistaPoli.PoliUser.setVisible(true);
-                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+list.mostrar());
+                   
                     vistaPoli.txtPol2.setVisible(true);
                     vistaPoli.txtPol2.setText("");
                     vistaPoli.jLabelPoli2.setText("Ingrese un número c");
@@ -187,9 +178,7 @@ public class Controlador implements ActionListener {
                     vistaPoli.btnAccion.setVisible(true);
                     vistaPoli.ResultadoFin.setVisible(false);
                     vistaPoli.Resultado.setVisible(false);
-                    vistaPoli.PoliUser2.setVisible(false);
-                    vistaPoli.jLabelPoliAux.setVisible(false);
-                    vistaPoli.txtPolAux.setVisible(false);
+                 
 
 
                 break;
@@ -198,8 +187,6 @@ public class Controlador implements ActionListener {
                 case 2:
                     //Restablecer las variables por si el usuario quiere realizar otra operación
                     //------------------------------
-                    vistaPoli.PoliUser.setVisible(true);
-                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+list.mostrar());
                     vistaPoli.txtPol2.setVisible(true);
                     vistaPoli.txtPol2.setText("");
                     vistaPoli.jLabelPoli2.setText("Ingrese segundo polinomio");
@@ -208,9 +195,6 @@ public class Controlador implements ActionListener {
                     vistaPoli.btnAccion.setVisible(true);
                     vistaPoli.ResultadoFin.setVisible(false);
                     vistaPoli.Resultado.setVisible(false);
-                    vistaPoli.PoliUser2.setVisible(false);
-                    vistaPoli.jLabelPoliAux.setVisible(false);
-                    vistaPoli.txtPolAux.setVisible(false);
 
                 break;
 
@@ -218,8 +202,6 @@ public class Controlador implements ActionListener {
                 case 3:
                     //Restablecer las variables por si el usuario quiere realizar otra operación
                     //------------------------------
-                    vistaPoli.PoliUser.setVisible(true);
-                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+list.mostrar());
                     vistaPoli.txtPol2.setVisible(true);
                     vistaPoli.txtPol2.setText("");
                     vistaPoli.jLabelPoli2.setText("Ingrese segundo polinomio");
@@ -228,9 +210,6 @@ public class Controlador implements ActionListener {
                     vistaPoli.btnAccion.setVisible(true);
                     vistaPoli.ResultadoFin.setVisible(false);
                     vistaPoli.Resultado.setVisible(false);
-                    vistaPoli.PoliUser2.setVisible(false);
-                    vistaPoli.jLabelPoliAux.setVisible(false);
-                    vistaPoli.txtPolAux.setVisible(false);
 
                 break;
 
@@ -238,8 +217,6 @@ public class Controlador implements ActionListener {
                 case 4:
                     //Restablecer las variables por si el usuario quiere realizar otra operación
                     //------------------------------
-                    vistaPoli.PoliUser.setVisible(true);
-                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+list.mostrar());
                     vistaPoli.txtPol2.setVisible(true);
                     vistaPoli.txtPol2.setText("");
                     vistaPoli.jLabelPoli2.setText("Ingrese un número C para determinar si el (x - c) es factor de P(x) ");
@@ -248,9 +225,6 @@ public class Controlador implements ActionListener {
                     vistaPoli.btnAccion.setVisible(true);
                     vistaPoli.ResultadoFin.setVisible(false);
                     vistaPoli.Resultado.setVisible(false);
-                    vistaPoli.PoliUser2.setVisible(false);
-                    vistaPoli.jLabelPoliAux.setVisible(false);
-                    vistaPoli.txtPolAux.setVisible(false);
                     
                 break;
             }
@@ -258,9 +232,6 @@ public class Controlador implements ActionListener {
             
         if(e.getSource()== vistaPoli.btnAccion){
             vistaPoli.btnAccion.setVisible(false);
-            vistaPoli.PoliUser.setVisible(true);   
-            vistaPoli.txtPolAux.setVisible(false);
-            vistaPoli.jLabelPoliAux.setVisible(false);
             vistaPoli.jLabelPoli2.setVisible(true);
             vistaPoli.ResultadoFin.setVisible(true);
             vistaPoli.Resultado.setVisible(true);
@@ -278,8 +249,6 @@ public class Controlador implements ActionListener {
                     try{
                         int a = Integer.parseInt(vistaPoli.txtPol2.getText());                    
                         int Result = list.evalua(a);
-                        vistaPoli.PoliUser2.setVisible(true);
-                        vistaPoli.PoliUser2.setText("valor c: "+a);
 //                        vistaPoli.Resultado.setText(Result.toString());
                     }catch(Exception eo){
                         
@@ -294,10 +263,6 @@ public class Controlador implements ActionListener {
                     String auxSum = sinEspacios(vistaPoli.txtPol2.getText());
                     ListaSimple listToSum = toList(auxSum);
                     listToSum.ordenar();
-                    vistaPoli.PoliUser.setVisible(true);
-                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+list.mostrar());
-                    vistaPoli.PoliUser2.setVisible(true);
-                    vistaPoli.PoliUser2.setText("Segundo polinomio ingresado: "+listToSum.mostrar());
                     vistaPoli.Resultado.setText(list.sumaPolinomios(listToSum).mostrar());
                     break;
                     
@@ -306,18 +271,12 @@ public class Controlador implements ActionListener {
                     String auxMult = sinEspacios(vistaPoli.txtPol2.getText());
                     ListaSimple listMult = toList(auxMult);
                     listMult.ordenar();
-                    vistaPoli.PoliUser.setVisible(true);
-                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+list.mostrar());
-                    vistaPoli.PoliUser2.setVisible(true);
-                    vistaPoli.PoliUser2.setText("Segundo polinomio ingresado: "+listMult.mostrar());
                     vistaPoli.Resultado.setText(list.multiplcacion(listMult).mostrar());
                       break;
                 //Determinar (x-c) es factor de P(X)
                 case 4:
                     try{
                         int c = Integer.parseInt(vistaPoli.txtPol2.getText());
-                        vistaPoli.PoliUser2.setVisible(true);
-                        vistaPoli.PoliUser2.setText("valor c ingresado: "+c);
                     if(list.detFactor(c) == true){
                         vistaPoli.Resultado.setText("(x - "+c+") es factor de P(x)");
                     }else{

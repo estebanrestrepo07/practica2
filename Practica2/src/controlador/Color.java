@@ -80,6 +80,10 @@ class Grafo
         for (int u = 0; u < V; u++)
             System.out.println("Vertice " + u + " --->  Color "
                                 + result[u]);
+        System.out.println("");
+        for (int i = 0; i < result.length; i++){
+            System.out.println(result[i]);
+        }
     }
  
     //Main
@@ -107,6 +111,8 @@ class Grafo
         g2.addArista(4, 3);
         System.out.println("Grafo 2 ");
         g2.Coloracion();
+        
+        
     }
 }
 
