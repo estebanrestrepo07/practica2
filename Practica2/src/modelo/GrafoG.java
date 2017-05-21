@@ -138,6 +138,8 @@ public class GrafoG {
         return (g.getNumAristas() == 0);
     }
     public boolean esCompleto(GrafoG g){
+        int aristas = g.contarLasAristas();
+        g.setNumAristas(aristas);
         int calc = (g.getNumVertices()*(g.getNumVertices()-1))/2; 
         return (g.getNumAristas() == calc);
     }
@@ -152,7 +154,6 @@ public class GrafoG {
            vertice = i;         
            NodoG actuali = vecinos[vertice];
            if(actuali != null) {
-                System.out.println(actuali.getDato());
                 if(vertice == va) {
                     System.out.println(vertice);
                     while(actuali != null) {
@@ -175,13 +176,14 @@ public class GrafoG {
                     if(visitados[vertice] == 0) {
                         while(actuali != null) {
                             if(actuali.getDato() != va) {
-                                this.aggArista(va, actuali.getDato());
+                                aggArista(va, actuali.getDato());
+                                borraArista(actuali.getDato(), vb);
                             }
                             System.out.println(actuali.getDato());
                             actuali = actuali.getLiga();
                             visitados[vertice] = 1;
-                            i = i - 1;
                             
+                            vecinos[vertice]=vecinos[vertice+1];                           
                         }
                     } else {
                         while(actuali != null) {
@@ -191,8 +193,7 @@ public class GrafoG {
                                 borraArista(actuali.getDato(), vb);
                             }
                             System.out.println(actuali.getDato());
-                            actuali = actuali.getLiga();
-                            vecinos[vertice]=vecinos[vertice+1];
+                            actuali = actuali.getLiga();                            
                         }
                     }
                 } else {
@@ -221,5 +222,42 @@ public class GrafoG {
                 
             }        
         }
+    }
+    
+    public String genPoliCrom(){
+        int[] borrar = new int[2];
+        int numV = this.getNumVertices();
+        if(esCompleto(this)){
+            String poli ="x";
+            for (int i = 1; i <= numV; i++) {
+                poli = poli+"(x-"+i+")";
+            }
+            return poli;
+        }
+        else if(esDisperso(this)){
+            String poli;
+            poli = "x"+numV;
+            return poli;
+        }else{
+            borrar = this.buscarAristaBorrar();
+            GrafoG b = this;
+            b.borraArista(borrar[0], borrar[1]);
+            GrafoG f = this;
+            f.fundirVertices(borrar[0], borrar[1]);
+            return (b.genPoliCrom() + "-" +f.genPoliCrom());
+        }
+    }
+    
+    public int contarLasAristas(){
+        int contarAristas = 0;
+        for (int i = 1; i < vecinos.length; i++) {
+            NodoG actual = vecinos[i];
+            while  (actual !=null){
+                contarAristas = contarAristas +1;
+                actual = actual.getLiga();
+            }
+        }
+        
+        return (contarAristas/2);
     }
 }

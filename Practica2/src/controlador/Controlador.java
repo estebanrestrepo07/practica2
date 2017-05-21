@@ -427,6 +427,8 @@ public class Controlador implements ActionListener {
                 System.out.println(g.esCompleto(g));
                 System.out.println(g.esDisperso(g));
                 
+                System.out.println("jaja :P "+ h.contarLasAristas());
+                
             }
             
         }
