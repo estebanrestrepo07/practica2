@@ -31,16 +31,11 @@ public class PracticaMain {
         //vistaPoli.cbOpciones.setEnabled(false);
         vistaPoli.txtPol2.setVisible(false);
         vistaPoli.btnAccion.setVisible(false);
-        vistaPoli.PoliUser.setVisible(false);
-        vistaPoli.PoliUser2.setVisible(false);
         vistaPoli.Resultado.setVisible(false);
-        vistaPoli.txtPolAux.setVisible(false);
-        vistaPoli.jLabelPoliAux.setVisible(false);
         vistaPoli.jLabelPoli2.setVisible(false);
         vistaPoli.ResultadoFin.setVisible(false);
         vistaPoli.ResultadoFin.setVisible(false);
-        
-        vistaPoli.jTextArea.setEnabled(false);
+
         
         vistaPoli.setLocationRelativeTo(null);
         
