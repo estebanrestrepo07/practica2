@@ -378,11 +378,10 @@ public class Controlador implements ActionListener {
                 System.out.println(g.esCompleto(g));
                 System.out.println(g.esDisperso(g));
                 
+                System.out.println("jaja :P "+ h.contarLasAristas());
+                
             }
             
         }
-//    public void actionPerformed(ActionEvent e) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
     }   
 }
