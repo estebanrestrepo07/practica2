@@ -8,6 +8,13 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import vista.*;
 import modelo.*;
@@ -45,6 +52,64 @@ public class Controlador implements ActionListener {
         }
         
         return aux;
+    }
+    
+    public GrafoG toGraph(File file) {
+        GrafoG g = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+        int numVectores = 0;
+        int numAristas = 0;
+        int count = 0;
+
+        try {
+           // Apertura del fichero y creacion de BufferedReader para poder
+           // hacer una lectura comoda (disponer del metodo readLine()).           
+           fr = new FileReader (file);
+           br = new BufferedReader(fr);
+
+           // Lectura del fichero
+           String linea;
+           while((linea=br.readLine())!=null) {
+                switch(linea.charAt(0)) {
+                    case 'p':
+                        String[] tamaño = linea.split(" ");
+                        numVectores = Integer.parseInt(tamaño[2]);
+                        numAristas = Integer.parseInt(tamaño[3]);
+                        g = new GrafoG(numVectores, numAristas);
+                        break;
+                    case 'e':
+                        count ++;
+                        if(count<=numAristas){
+                            String[] arista = linea.split(" ");
+                            int va = Integer.parseInt(arista[1]);
+                            int vb = Integer.parseInt(arista[2]);
+                            if((va<= numVectores)&&(vb<=numVectores)){
+                                g.aggArista(va, vb);
+                            }
+                        }  
+                        break;
+                    default:
+                        break;
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+           // En el finally cerramos el fichero, para asegurarnos
+           // que se cierra tanto si todo va bien como si salta 
+           // una excepcion.
+           try{                    
+              if( null != fr ){   
+                 fr.close();     
+              }                  
+           }catch (Exception e2){ 
+              e2.printStackTrace();
+           }
+        }
+        return g;
     }
     
     //metodo para listar el polinomio 
@@ -133,7 +198,7 @@ public class Controlador implements ActionListener {
             pol.ordenar();
         }
 
-        System.out.println("mi lista es: "+ pol.mostrar());
+        //System.out.println("mi lista es: "+ pol.mostrar());
         return pol;
     }
     
@@ -339,7 +404,31 @@ public class Controlador implements ActionListener {
             JOptionPane.showMessageDialog(null, "Hasta luego");
             System.exit(0);
         }
-    
+        if(e.getSource() == vistaPoli.btnBorrar) {
+            JFileChooser fc = new JFileChooser();
+            File file;
+            String x="";
+            String y="";
+
+            int result = fc.showOpenDialog(null);
+            if (result == JFileChooser.APPROVE_OPTION){
+                file = fc.getSelectedFile();
+                GrafoG g = toGraph(file);
+//                g.mostrandoGrafo();
+//                g.borraArista(1, 7);
+//                g.mostrandoGrafo();
+                GrafoG h = g;
+                h.mostrandoGrafo();
+                int[] tu = h.buscarAristaBorrar();
+                System.out.println("tu: "+tu[0]+ " jaja"+tu[1]);
+                h.borraArista(tu[0], tu[1]);
+                h.mostrandoGrafo();
+                System.out.println(g.esCompleto(g));
+                System.out.println(g.esDisperso(g));
+                
+            }
+            
+        }
 //    public void actionPerformed(ActionEvent e) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
