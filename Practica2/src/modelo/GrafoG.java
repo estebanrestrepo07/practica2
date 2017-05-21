@@ -142,42 +142,84 @@ public class GrafoG {
         return (g.getNumAristas() == calc);
     }
     public void fundirVertices(int va, int vb) {
-        int[] visitados = new int[this.numVertices];
+        int[] visitados = new int[numVertices+1];
+        System.out.println(visitados.length);
+        int vertice;
+        for(int i = 1; i < visitados.length; i++) {
+            visitados[i] = 0;
+        }
         for(int i = 1; i < vecinos.length; i++) {
-           visitados[i] = 0;
-           NodoG actual = vecinos[i];
-           if(actual.getDato() == va) {
-               while(actual != null) {
-                   if((actual.getDato() != vb)&& (actual.getDato() != va)) {
-                       actual.setDato(actual.getDato()-1);
-                   }
-                   actual = actual.getLiga();
-               }
-           } else if(actual.getDato() == vb) {
-               if(visitados[i] == 0) {
-                   while(actual != null) {
-                       if(actual.getDato() != va) {
-                           this.aggArista(va, actual.getDato());
-                       }
-                       actual = actual.getLiga();
-                       visitados[i] = 1;
-                       i = i - 1;
-                   }
-               } else {
-                   while(actual != null) {
-                       actual.setDato(actual.getDato()-1);
-                       actual = actual.getLiga();
-                   }
-               }
-           } else {
-               while(actual != null) {
-                   if(actual.getDato() != va) {
-                       actual.setDato(actual.getDato()-1);
-                   }
-                   actual = actual.getLiga();
-               }
-           }
-           visitados[i] = 1;
+           vertice = i;         
+           NodoG actuali = vecinos[vertice];
+           if(actuali != null) {
+                System.out.println(actuali.getDato());
+                if(vertice == va) {
+                    System.out.println(vertice);
+                    while(actuali != null) {
+                        if(actuali.getDato() == vb) {
+                            this.borraArista(va, vb);
+                        }
+                        if((actuali.getDato() != vb)&& (actuali.getDato() != va)) {
+                            if(actuali.getDato() > vb){
+                                actuali.setDato(actuali.getDato()-1);
+                            }else if(actuali.getDato() == vb){
+                                borraArista(actuali.getDato(), vb);
+                            }
+                        }
+                        System.out.println(actuali.getDato());
+                        actuali = actuali.getLiga();
+                        
+                    }
+                } else if(vertice == vb) {
+                    System.out.println(vertice);
+                    if(visitados[vertice] == 0) {
+                        while(actuali != null) {
+                            if(actuali.getDato() != va) {
+                                this.aggArista(va, actuali.getDato());
+                            }
+                            System.out.println(actuali.getDato());
+                            actuali = actuali.getLiga();
+                            visitados[vertice] = 1;
+                            i = i - 1;
+                            
+                        }
+                    } else {
+                        while(actuali != null) {
+                            if(actuali.getDato() > vb){
+                                actuali.setDato(actuali.getDato()-1);
+                            }else if(actuali.getDato() == vb){
+                                borraArista(actuali.getDato(), vb);
+                            }
+                            System.out.println(actuali.getDato());
+                            actuali = actuali.getLiga();
+                            vecinos[vertice]=vecinos[vertice+1];
+                        }
+                    }
+                } else {
+                    while(actuali != null) {
+                        if(actuali.getDato() != va) {
+                            if(actuali.getDato() > vb){
+                                actuali.setDato(actuali.getDato()-1);
+                            }else if(actuali.getDato() == vb){
+                                borraArista(actuali.getDato(), vb);
+                            }
+                        }
+                        System.out.println(actuali.getDato());
+                        actuali = actuali.getLiga();
+                    }
+                }
+                System.out.println(vertice);
+                if(vertice > vb ) {
+                    if(vertice+1 == vecinos.length) {
+                        vecinos[vertice] = null;
+                    } else {
+                        vecinos[vertice] = vecinos[vertice+1];
+                    }
+                    
+                }
+                visitados[vertice] = 1;
+                
+            }        
         }
     }
 }

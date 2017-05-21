@@ -421,7 +421,8 @@ public class Controlador implements ActionListener {
                 h.mostrandoGrafo();
                 int[] tu = h.buscarAristaBorrar();
                 System.out.println("tu: "+tu[0]+ " jaja"+tu[1]);
-                h.borraArista(tu[0], tu[1]);
+                System.out.println("voy a fundir hpta \n");
+                h.fundirVertices(tu[0], tu[1]);
                 h.mostrandoGrafo();
                 System.out.println(g.esCompleto(g));
                 System.out.println(g.esDisperso(g));
