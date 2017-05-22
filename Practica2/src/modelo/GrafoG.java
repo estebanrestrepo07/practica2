@@ -112,7 +112,10 @@ public class GrafoG {
     }
     
     public boolean esDisperso(GrafoG g){ 
-        return (g.getNumAristas() == 0);
+        int aristas = g.contarLasAristas();
+        g.setNumAristas(aristas);
+        int calc = (g.getNumVertices()*(g.getNumVertices()-1))/2; 
+        return (g.getNumAristas() <= (calc/2));
     }
     public boolean esCompleto(GrafoG g){
         int aristas = g.contarLasAristas();
@@ -122,7 +125,6 @@ public class GrafoG {
     }
     public void fundirVertices(int va, int vb) {
         int[] visitados = new int[numVertices+1];
-        System.out.println(visitados.length);
         int vertice;
         for(int i = 1; i < visitados.length; i++) {
             visitados[i] = 0;

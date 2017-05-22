@@ -96,29 +96,7 @@ public class ListaSimple {
 
             return suma;
     }
-    //multiplicar dos polinomios listados    
-    public ListaSimple multiplcacion(ListaSimple q){
-        a = this.primerNodo();
-        b= q.primerNodo();
-        ListaSimple aux = new ListaSimple();
-        while(!finRecorrido(a)){ 
-            while(!q.finRecorrido(b)){
-                aux.insertarNodo(a.getCoeficiente()*b.getCoeficiente(), (int)a.getExponente()+ (int) b.getExponente());
-                b=b.getLiga();
-            }
-            a=a.getLiga();
-            b= q.primerNodo();
-        }
-        aux.ordenar();
-        return aux;
-    }
     
-    //determinar si (x-c) es factor del polinomio listado
-    public boolean detFactor(int c){
-        boolean isfactor = false;
-            if(this.evalua(c) == 0){isfactor = true;};
-        return isfactor;
-    }
     
       
   

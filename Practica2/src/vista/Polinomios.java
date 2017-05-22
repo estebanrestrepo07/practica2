@@ -40,7 +40,7 @@ public class Polinomios extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton4 = new javax.swing.JButton();
-        btnBorrar = new javax.swing.JButton();
+        btnPoliCromatico = new javax.swing.JButton();
         cbOpciones = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -60,9 +60,9 @@ public class Polinomios extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        btnBorrar.setText("Examinar...");
+        btnPoliCromatico.setText("Examinar...");
 
-        cbOpciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...", "Evaluar P(c)", "Suma", "Multiplicación", "Es factor (x-c)", "1ra Derivada", "n-ma Derivada", "Antiderivada", "Integral definida" }));
+        cbOpciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...", "Evaluar P(c)" }));
 
         jLabel1.setText("Polinomio Cromático");
 
@@ -102,7 +102,7 @@ public class Polinomios extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(57, 57, 57)
-                                .addComponent(btnBorrar)
+                                .addComponent(btnPoliCromatico)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cbOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel2))
@@ -141,7 +141,7 @@ public class Polinomios extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBorrar)
+                    .addComponent(btnPoliCromatico)
                     .addComponent(cbOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -203,7 +203,7 @@ public class Polinomios extends javax.swing.JFrame {
     public javax.swing.JLabel Resultado;
     public javax.swing.JLabel ResultadoFin;
     public javax.swing.JButton btnAccion;
-    public javax.swing.JButton btnBorrar;
+    public javax.swing.JButton btnPoliCromatico;
     public javax.swing.JButton btnSalir;
     public javax.swing.JComboBox<String> cbOpciones;
     private javax.swing.JButton jButton4;

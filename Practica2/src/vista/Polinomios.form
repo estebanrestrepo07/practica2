@@ -50,7 +50,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel4" min="-2" pref="222" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                              <Component id="btnBorrar" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnPoliCromatico" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="cbOpciones" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -101,7 +101,7 @@
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnBorrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnPoliCromatico" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cbOpciones" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
               </Group>
@@ -127,7 +127,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="btnBorrar">
+    <Component class="javax.swing.JButton" name="btnPoliCromatico">
       <Properties>
         <Property name="text" type="java.lang.String" value="Examinar..."/>
       </Properties>
@@ -138,16 +138,9 @@
     <Component class="javax.swing.JComboBox" name="cbOpciones">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="9">
+          <StringArray count="2">
             <StringItem index="0" value="Seleccione..."/>
             <StringItem index="1" value="Evaluar P(c)"/>
-            <StringItem index="2" value="Suma"/>
-            <StringItem index="3" value="Multiplicaci&#xf3;n"/>
-            <StringItem index="4" value="Es factor (x-c)"/>
-            <StringItem index="5" value="1ra Derivada"/>
-            <StringItem index="6" value="n-ma Derivada"/>
-            <StringItem index="7" value="Antiderivada"/>
-            <StringItem index="8" value="Integral definida"/>
           </StringArray>
         </Property>
       </Properties>

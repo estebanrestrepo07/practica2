@@ -27,13 +27,10 @@ public class Controlador implements ActionListener {
     public Controlador(Polinomios vistaPoli) {
         
         this.vistaPoli = vistaPoli;
-        this.vistaPoli.btnBorrar.addActionListener(this);
+        this.vistaPoli.btnPoliCromatico.addActionListener(this);
         this.vistaPoli.btnSalir.addActionListener(this);
         this.vistaPoli.cbOpciones.addActionListener(this);
-        this.vistaPoli.btnAccion.addActionListener(this);
-        
-        
-        
+        this.vistaPoli.btnAccion.addActionListener(this);     
     }
     
     //metodo para quitar los espacios al string ingresado
@@ -56,7 +53,7 @@ public class Controlador implements ActionListener {
         int numVectores = 0;
         int numAristas = 0;
         int count = 0;
-
+        
         try {
            // Apertura del fichero y creacion de BufferedReader para poder
            // hacer una lectura comoda (disponer del metodo readLine()).           
@@ -67,27 +64,28 @@ public class Controlador implements ActionListener {
            String linea;
            while((linea=br.readLine())!=null) {
                 switch(linea.charAt(0)) {
+                    
                     case 'p':
+                        
                         String[] tamaño = linea.split(" ");
                         numVectores = Integer.parseInt(tamaño[2]);
                         numAristas = Integer.parseInt(tamaño[3]);
+                        System.out.println(numAristas);
                         g = new GrafoG(numVectores, numAristas);
                         break;
                     case 'e':
-                        count ++;
-                        if(count<=numAristas){
-                            String[] arista = linea.split(" ");
-                            int va = Integer.parseInt(arista[1]);
-                            int vb = Integer.parseInt(arista[2]);
-                            if((va<= numVectores)&&(vb<=numVectores)){
-                                g.aggArista(va, vb);
-                            }
-                        }  
+                        String[] arista = linea.split(" ");
+                        int va = Integer.parseInt(arista[1]);
+                        int vb = Integer.parseInt(arista[2]);
+                        if((va<= numVectores)&&(vb<=numVectores)){
+                            g.aggArista(va, vb);
+                        }
                         break;
                     default:
                         break;
                 }
             }
+           
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -105,6 +103,7 @@ public class Controlador implements ActionListener {
            }
         }
         return g;
+        
     }
     
     //metodo para listar el polinomio 
@@ -118,7 +117,6 @@ public class Controlador implements ActionListener {
         boolean exp = false;
         //recorremos todo el polinomio 
         for(int i = 0; i < polinomio.length(); i++) {
-            System.out.println(polinomio.charAt(i));
             //Detectaremos los posibles caracteres que se encontrará, dependiendo de cada caracter,
             //se sabrá si es coeficiente, exponente, variable 'x' y su correspondiente signo
             //al detectar cada monomio se listará.
@@ -193,7 +191,6 @@ public class Controlador implements ActionListener {
             pol.ordenar();
         }
 
-        //System.out.println("mi lista es: "+ pol.mostrar());
         return pol;
     }
     
@@ -239,51 +236,6 @@ public class Controlador implements ActionListener {
                     vistaPoli.Resultado.setVisible(false);
 
                 break;
-
-                //Sumar Polinomios
-                case 2:
-                    //Restablecer las variables por si el usuario quiere realizar otra operación
-                    //------------------------------
-                    vistaPoli.txtPol2.setVisible(true);
-                    vistaPoli.txtPol2.setText("");
-                    vistaPoli.jLabelPoli2.setText("Ingrese segundo polinomio");
-                    vistaPoli.jLabelPoli2.setVisible(true);
-                    vistaPoli.btnAccion.setText("Sumar");
-                    vistaPoli.btnAccion.setVisible(true);
-                    vistaPoli.ResultadoFin.setVisible(false);
-                    vistaPoli.Resultado.setVisible(false);
-
-                break;
-
-                //Multiplicar Polinomios 
-                case 3:
-                    //Restablecer las variables por si el usuario quiere realizar otra operación
-                    //------------------------------
-                    vistaPoli.txtPol2.setVisible(true);
-                    vistaPoli.txtPol2.setText("");
-                    vistaPoli.jLabelPoli2.setText("Ingrese segundo polinomio");
-                    vistaPoli.jLabelPoli2.setVisible(true);
-                    vistaPoli.btnAccion.setText("Multiplicar");
-                    vistaPoli.btnAccion.setVisible(true);
-                    vistaPoli.ResultadoFin.setVisible(false);
-                    vistaPoli.Resultado.setVisible(false);
-
-                break;
-
-                //Determinar (x-c) es factor de P(X)
-                case 4:
-                    //Restablecer las variables por si el usuario quiere realizar otra operación
-                    //------------------------------);
-                    vistaPoli.txtPol2.setVisible(true);
-                    vistaPoli.txtPol2.setText("");
-                    vistaPoli.jLabelPoli2.setText("Ingrese un número C para determinar si el (x - c) es factor de P(x) ");
-                    vistaPoli.jLabelPoli2.setVisible(true);
-                    vistaPoli.btnAccion.setText("Determinar");
-                    vistaPoli.btnAccion.setVisible(true);
-                    vistaPoli.ResultadoFin.setVisible(false);
-                    vistaPoli.Resultado.setVisible(false);
-                    
-                break;
             }
         }
             
@@ -314,38 +266,6 @@ public class Controlador implements ActionListener {
 
                     }                  
                     break;
-                    
-                //Suma entre dos listas
-                case 2:
-                    String auxSum = sinEspacios(vistaPoli.txtPol2.getText());
-                    ListaSimple listToSum = toList(auxSum);
-                    listToSum.ordenar();
-                    vistaPoli.Resultado.setText(list.sumaPolinomios(listToSum).mostrar());
-                    break;
-                    
-                //Multiplicacion entre dos listas
-                case 3:
-                    String auxMult = sinEspacios(vistaPoli.txtPol2.getText());
-                    ListaSimple listMult = toList(auxMult);
-                    listMult.ordenar();
-                    vistaPoli.Resultado.setText(list.multiplcacion(listMult).mostrar());
-                      break;
-                //Determinar (x-c) es factor de P(X)
-                case 4:
-                    try{
-                        int c = Integer.parseInt(vistaPoli.txtPol2.getText());
-                    if(list.detFactor(c) == true){
-                        vistaPoli.Resultado.setText("(x - "+c+") es factor de P(x)");
-                    }else{
-                        vistaPoli.Resultado.setText("(x - "+c+") no es factor de P(x)");
-                    }
-                    }catch(Exception eo){
-                        vistaPoli.cbOpciones.setSelectedIndex(0);
-                        JOptionPane.showMessageDialog(null, "Valor no válido, por favor digitar valor numérico");
-                    }
-                    
-                    
-                    break;
                        
                     
             }
@@ -355,7 +275,7 @@ public class Controlador implements ActionListener {
             JOptionPane.showMessageDialog(null, "Hasta luego");
             System.exit(0);
         }
-        if(e.getSource() == vistaPoli.btnBorrar) {
+        if(e.getSource() == vistaPoli.btnPoliCromatico) {
             JFileChooser fc = new JFileChooser();
             File file;
             String x="";
@@ -365,20 +285,12 @@ public class Controlador implements ActionListener {
             if (result == JFileChooser.APPROVE_OPTION){
                 file = fc.getSelectedFile();
                 GrafoG g = toGraph(file);
-//                g.mostrandoGrafo();
-//                g.borraArista(1, 7);
-//                g.mostrandoGrafo();
                 GrafoG h = g;
                 h.mostrandoGrafo();
                 int[] tu = h.buscarAristaBorrar();
-                System.out.println("tu: "+tu[0]+ " jaja"+tu[1]);
-                System.out.println("voy a fundir hpta \n");
                 h.fundirVertices(tu[0], tu[1]);
                 h.mostrandoGrafo();
-                System.out.println(g.esCompleto(g));
-                System.out.println(g.esDisperso(g));
-                
-                System.out.println("jaja :P "+ h.contarLasAristas());
+               
                 
             }
             
