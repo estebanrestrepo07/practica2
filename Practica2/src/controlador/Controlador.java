@@ -291,10 +291,9 @@ public class Controlador implements ActionListener {
                 int[] tu = h.buscarAristaBorrar();
                 h.fundirVertices(tu[0], tu[1]);
                 h.mostrandoGrafo(); 
-                String resultado = h.genPoliCrom();
+                String resultado = ("P(G,x): "+h.genPoliCrom());
                 File archivo=new File("texto.txt");
                 try {
-                    System.out.println("algooooo");
                     FileWriter escribir= new FileWriter(archivo,true);
                     escribir.write(resultado);
                     escribir.close();
