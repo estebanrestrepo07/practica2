@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -280,7 +281,7 @@ public class Controlador implements ActionListener {
             File file;
             String x="";
             String y="";
-
+            
             int result = fc.showOpenDialog(null);
             if (result == JFileChooser.APPROVE_OPTION){
                 file = fc.getSelectedFile();
@@ -289,11 +290,19 @@ public class Controlador implements ActionListener {
                 h.mostrandoGrafo();
                 int[] tu = h.buscarAristaBorrar();
                 h.fundirVertices(tu[0], tu[1]);
-                h.mostrandoGrafo();
-               
+                h.mostrandoGrafo(); 
+                String resultado = h.genPoliCrom();
+                File archivo=new File("texto.txt");
+                try {
+                    System.out.println("algooooo");
+                    FileWriter escribir= new FileWriter(archivo,true);
+                    escribir.write(resultado);
+                    escribir.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
             }
-            
         }
     }   
 }

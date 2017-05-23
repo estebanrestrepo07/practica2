@@ -2,6 +2,7 @@ package modelo;
 
 import java.util.ArrayList;
 
+
 public class GrafoG {
     
     private NodoG vecinos[];
@@ -222,7 +223,7 @@ public class GrafoG {
             GrafoG b = this;
             b.borraArista(borrar[0], borrar[1]);
             GrafoG f = this;
-            f.fundirVertices(borrar[0], borrar[1]);
+            f.fundirVertices(borrar[0], borrar[1]);           
             return (b.genPoliCrom() + "-" +f.genPoliCrom());
         }
     }
