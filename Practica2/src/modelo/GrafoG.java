@@ -133,8 +133,8 @@ public class GrafoG {
            vertice = i;         
            NodoG actuali = vecinos[vertice];
            if(actuali != null) {
-                if(vertice == va) {
-                    System.out.println(vertice);
+               System.out.println("vertice"+vertice);
+                if(i == va) {
                     while(actuali != null) {
                         if(actuali.getDato() == vb) {
                             this.borraArista(va, vb);
@@ -142,16 +142,13 @@ public class GrafoG {
                         if((actuali.getDato() != vb)&& (actuali.getDato() != va)) {
                             if(actuali.getDato() > vb){
                                 actuali.setDato(actuali.getDato()-1);
-                            }else if(actuali.getDato() == vb){
-                                borraArista(actuali.getDato(), vb);
                             }
                         }
                         System.out.println(actuali.getDato());
                         actuali = actuali.getLiga();
                         
                     }
-                } else if(vertice == vb) {
-                    System.out.println(vertice);
+                } else if(i == vb) {
                     if(visitados[vertice] == 0) {
                         while(actuali != null) {
                             if(actuali.getDato() != va) {
@@ -188,7 +185,6 @@ public class GrafoG {
                         actuali = actuali.getLiga();
                     }
                 }
-                System.out.println(vertice);
                 if(vertice > vb ) {
                     if(vertice+1 == vecinos.length) {
                         vecinos[vertice] = null;
