@@ -121,6 +121,7 @@ public class GrafoG {
     public boolean esCompleto(GrafoG g){
         int aristas = g.contarLasAristas();
         g.setNumAristas(aristas);
+        System.out.println("Aristas " + aristas);
         int calc = (g.getNumVertices()*(g.getNumVertices()-1))/2; 
         return (g.getNumAristas() == calc);
     }
@@ -203,22 +204,23 @@ public class GrafoG {
     public String genPoliCrom(){
         int[] borrar = new int[2];
         int numV = this.getNumVertices();
-        if(esCompleto(this)){
+        GrafoG nuevo = this;
+        if(esCompleto(nuevo)){
             String poli ="x";
             for (int i = 1; i <= numV; i++) {
                 poli = poli+"(x-"+i+")";
             }
             return poli;
         }
-        else if(esDisperso(this)){
+        else if(esDisperso(nuevo)){
             String poli;
             poli = "x"+numV;
             return poli;
         }else{
-            borrar = this.buscarAristaBorrar();
-            GrafoG b = this;
+            borrar = nuevo.buscarAristaBorrar();
+            GrafoG b = nuevo;
             b.borraArista(borrar[0], borrar[1]);
-            GrafoG f = this;
+            GrafoG f = nuevo;
             f.fundirVertices(borrar[0], borrar[1]);           
             return (b.genPoliCrom() + "-" +f.genPoliCrom());
         }
@@ -228,12 +230,25 @@ public class GrafoG {
         int contarAristas = 0;
         for (int i = 1; i < vecinos.length; i++) {
             NodoG actual = vecinos[i];
+            System.out.println("Vertice " + (i));
             while  (actual !=null){
+                System.out.println("Arista " + actual.getDato()+ " numero " + contarAristas);
                 contarAristas = contarAristas +1;
                 actual = actual.getLiga();
             }
         }
         
         return (contarAristas/2);
+    }
+    public int contarLosVertices(){
+        int contarVertices = 0;
+        for (int i = 1; i < this.vecinos.length; i++) {
+            NodoG actual = vecinos[i];
+            if(actual!= null) {
+                contarVertices = contarVertices + 1;
+            }
+        }
+        
+        return (contarVertices);
     }
 }
